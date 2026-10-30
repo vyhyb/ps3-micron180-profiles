@@ -72,6 +72,26 @@ See [docs/](docs/README.md):
 After changing any file under `PrintersForAnts/<version>/`, regenerate that folder's `manifest.json`
 (the hashes). A script is in [docs/adapting.md](docs/adapting.md#5-update-hashes-and-version).
 
+## Releasing
+
+Pushing a tag that starts with `v` (for example `v1.0.2`) runs [the release workflow](.github/workflows/release.yml):
+
+1. It checks that every `manifest.json` hash matches its file, that `vendor.yaml` versions match their
+   folders, and that the newest `.idx` entry is the newest version. It warns if the tag differs from
+   the vendor version.
+2. It zips the contents of `micron180-fff-offline/` as `printersforants-micron180-<tag>.zip`.
+3. It creates a GitHub release with that zip. The notes list the commits since the previous `v*` tag,
+   grouped by [Conventional Commit](https://www.conventionalcommits.org/) type (`feat!`, `feat`,
+   `fix`, `docs`). Tags containing `-`, such as `v1.1.0-beta1`, become pre-releases.
+
+```sh
+git tag v1.0.2
+git push origin main v1.0.2
+```
+
+Use commit messages like `feat: add 0.25 nozzle` or `fix: lower PETG flow` so they land in the
+right section.
+
 ## License
 
 [MIT](LICENSE)

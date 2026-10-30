@@ -1,0 +1,53 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: write
+
+env:
+  REPO_DIR: micron180-fff-offline
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out (full history for release notes)
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Check repository
+        run: python3 .github/scripts/check-repo.py "$REPO_DIR" "$GITHUB_REF_NAME"
+
+      - name: Build zip
+        id: zip
+        run: |
+          name="printersforants-micron180-${GITHUB_REF_NAME}.zip"
+          # Zip the contents so manifest.json sits at the root of the archive.
+          (cd "$REPO_DIR" && zip -r -X "$GITHUB_WORKSPACE/$name" .)
+          echo "name=$name" >> "$GITHUB_OUTPUT"
+
+      - name: Write release notes
+        run: |
+          bash .github/scripts/release-notes.sh "$GITHUB_REF_NAME" > notes.md
+          cat >> notes.md <<'EOF'
+
+          ### Installation
+
+          Add the attached zip as a local profile repository in PrusaSlicer 3.
+          See the [README](https://github.com/${{ github.repository }}#installation) for details.
+          EOF
+          cat notes.md
+
+      - name: Create release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "$GITHUB_REF_NAME" "${{ steps.zip.outputs.name }}" \
+            --title "$GITHUB_REF_NAME" \
+            --notes-file notes.md \
+            $([[ "$GITHUB_REF_NAME" == *-* ]] && echo --prerelease)
