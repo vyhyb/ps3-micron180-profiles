@@ -40,6 +40,23 @@ Then add the zip as a local profile repository in PrusaSlicer 3.
 The repository `manifest.json` points to `http://localhost:8000/v2/repos/printersforants`. That only
 matters if you serve the repository over HTTP instead.
 
+## Accurate print times with klipper_estimator
+
+PrusaSlicer's time estimate does not model Klipper's motion planner exactly. For accurate times in
+Mainsail, Fluidd or Moonraker, run [klipper_estimator](https://github.com/Annex-Engineering/klipper_estimator)
+as a post-processing script. It reads the real limits from your printer through Moonraker and rewrites
+the time estimates in the g-code.
+
+The profiles deliberately leave this unset, because the command depends on your machine. To use it, add
+it to the print profile's post-processing scripts (`post_process`):
+
+```text
+/path/to/klipper_estimator --config_moonraker_url http://<printer-ip> post-process
+```
+
+PrusaSlicer appends the g-code file path automatically. Save the result as a user preset so the
+setting survives profile updates.
+
 ## Documentation
 
 See [docs/](docs/README.md):
