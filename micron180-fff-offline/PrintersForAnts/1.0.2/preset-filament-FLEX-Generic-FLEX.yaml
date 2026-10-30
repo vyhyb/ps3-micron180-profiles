@@ -1,0 +1,48 @@
+# Adapted from Prusa Research 'Generic FLEX' (MINI variants).
+kind: filament
+id: 'Generic FLEX @Micron 180'
+name: 'Generic FLEX @Micron 180'
+features:
+  $.type: 'FLEX'
+condition: printer.model == "MICRON180" and (tool.nozzle_diameter == 0.4)
+values:
+  bed_temperature: 50
+  bridge_fan_speed: 80
+  chamber_minimal_temperature: 0
+  chamber_temperature: 0
+  cooling: 1
+  cooling_slowdown_logic: uniform_cooling
+  disable_fan_first_layers: 3
+  enable_dynamic_fan_speeds: 0
+  end_filament_gcode: '; Filament-specific end gcode'
+  extrusion_multiplier: 1.15
+  fan_always_on: 1
+  fan_below_layer_time: 100
+  filament_abrasive: 0
+  filament_colour: '#008000'
+  filament_cost: '40'
+  filament_density: 1.22
+  filament_diameter: 1.75
+  filament_infill_max_crossing_speed: 0
+  filament_infill_max_speed: 0
+  filament_max_volumetric_speed: 1.35
+  filament_shrinkage_compensation_xy: '0%'
+  filament_shrinkage_compensation_z: '0%'
+  filament_soluble: 0
+  filament_spool_weight: 0
+  filament_type: FLEX
+  filament_vendor: Generic
+  first_layer_bed_temperature: 50
+  first_layer_temperature: 240
+  full_fan_speed_layer: 0
+  idle_temperature: 70
+  max_fan_speed: 60
+  min_fan_speed: 30
+  min_print_speed: 15
+  pressure_advance: disabled
+  slowdown_below_layer_time: 10
+  temperature: 240
+variants:
+- condition: tool.nozzle_diameter == 0.4
+  id: ymzdnhFLzdWq3aanr5/2HA
+  values: {}

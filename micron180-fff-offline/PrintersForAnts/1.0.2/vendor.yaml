@@ -1,7 +1,7 @@
 kind: vendor
-id: Micron
-name: 'Micron'
-version: 1.0.1
+id: PrintersForAnts
+name: PrintersForAnts
+version: 1.0.2
 features:
   printer:
     supports_high_flow_nozzle:
@@ -63,6 +63,11 @@ features:
   feeder:
     single_mode:
       default: false
+printer_families:
+  - label: Micron
+    base_model: MICRON180
+    printer_configs_order:
+      - micron180-cfg
 ---
 kind: sheet
 id: pei_smooth
@@ -73,7 +78,7 @@ kind: tool
 technology: FFF
 id: 'micron-0.4'
 name: '0.4'
-condition: printer.model == "MICRON180"
+condition: printer.model == "MICRON180" and printer.supports_04_nozzle
 features:
   nozzle_diameter:
     default: 0.4
@@ -86,45 +91,10 @@ model:
   base_model: MICRON180
   model: MICRON180
 tool_count: 1
+# Only features that differ from the vendor defaults above.
 features:
-  supports_high_flow_nozzle:
-    default: false
-  input_shaper:
-    default: false
-  planetary_gearbox:
-    default: false
-  supports_tool_preheating:
-    default: false
-  multi_extruder:
-    default: false
-  bed_segments_x:
-    default: 1
-  bed_segments_y:
-    default: 1
-  supports_025_nozzle:
-    default: false
-  supports_03_nozzle:
-    default: false
   supports_04_nozzle:
-    default: false
-  supports_05_nozzle:
-    default: false
-  supports_06_nozzle:
-    default: false
-  supports_08_nozzle:
-    default: false
-  supports_mmu_025_nozzle:
-    default: false
-  supports_mmu_03_nozzle:
-    default: false
-  supports_mmu_04_nozzle:
-    default: false
-  supports_mmu_05_nozzle:
-    default: false
-  supports_mmu_06_nozzle:
-    default: false
-  supports_mmu_08_nozzle:
-    default: false
+    default: true
 visual:
   bed_model: micron-bed.stl
   bed_texture: micron-bed-texture.png
