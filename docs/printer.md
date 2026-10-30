@@ -35,31 +35,46 @@ machine with a direct-drive extruder and an **E3D V6** hotend.
 | `use_firmware_retraction` | `0` | Retraction comes from the print profile |
 | `autoemit_temperature_commands` | `0` | The slicer adds **no** `M104`/`M140`/`M109`/`M190`. All heating is done by `PRINT_START` |
 | `binary_gcode` | `0` | Plain-text g-code, as Klipper requires |
-| `machine_limits_usage` | `time_estimate_only` | The limits below only affect the time estimate. Klipper's `printer.cfg` controls the real motion |
+| `machine_limits_usage` | `time_estimate_only` | The limits below only affect the time estimate. Klipper's `printer.cfg` controls the real motion, so keep the two in sync |
 | `thumbnails` | `64x64/PNG, 400x300/PNG` | For Mainsail/Fluidd previews |
 | `remaining_times` / `silent_mode` | `0` / `0` | Marlin features; off for Klipper |
 | `stuck_filament_detection` | `0` | Prusa firmware feature; off |
 
 ### Machine limits (time estimate only)
 
-| Key | Normal | Silent |
-|-----|--------|--------|
-| `machine_max_acceleration_x` / `_y` | 9000 | 9000 |
-| `machine_max_acceleration_z` | 500 | 500 |
-| `machine_max_acceleration_e` | 10000 | 10000 |
-| `machine_max_acceleration_extruding` | 1500 | 1500 |
-| `machine_max_acceleration_retracting` | 1500 | 1500 |
-| `machine_max_acceleration_travel` | 1500 | 1250 |
-| `machine_max_feedrate_x` / `_y` | 500 | 500 |
-| `machine_max_feedrate_z` | 12 | 12 |
-| `machine_max_jerk_x` / `_y` | 10 | 10 |
-| `machine_max_jerk_z` | 0.2 | 0.2 |
-| `machine_max_jerk_e` | 2.5 | 2.5 |
+The values mirror the `[printer]` section of the Micron's Klipper `printer.cfg`:
 
-> **Note:** The print profiles ask for up to 5000 mm/s² while extruding and traveling, but
-> `machine_max_acceleration_extruding` and `_travel` are 1500. With `time_estimate_only`, the estimate is
-> calculated with the lower value, so the predicted print time will be too long. Raise these two values
-> to match the `max_accel` in your `printer.cfg` if you want accurate estimates.
+```ini
+[printer]
+kinematics: corexy
+max_velocity: 200
+max_accel: 8000
+max_z_velocity: 25
+max_z_accel: 350
+square_corner_velocity: 5
+```
+
+| Key | Normal | Silent | Klipper source |
+|-----|--------|--------|----------------|
+| `machine_max_acceleration_x` / `_y` | 8000 | 8000 | `max_accel` |
+| `machine_max_acceleration_extruding` | 8000 | 8000 | `max_accel` (Klipper uses one limit for every move) |
+| `machine_max_acceleration_travel` | 8000 | 8000 | `max_accel` |
+| `machine_max_acceleration_retracting` | 1500 | 1500 | – |
+| `machine_max_acceleration_e` | 10000 | 10000 | – |
+| `machine_max_acceleration_z` | 350 | 350 | `max_z_accel` |
+| `machine_max_feedrate_x` / `_y` | 200 | 200 | `max_velocity` |
+| `machine_max_feedrate_z` | 25 | 25 | `max_z_velocity` |
+| `machine_max_jerk_x` / `_y` | 5 | 5 | `square_corner_velocity` (closest equivalent) |
+| `machine_max_jerk_z` | 0.2 | 0.2 | – |
+| `machine_max_jerk_e` | 2.5 | 2.5 | – |
+
+> **Note:** Some print profiles ask for more than Klipper allows. Travel speed is 300-500 mm/s and
+> infill speed in 0.20mm QUALITY is 200 mm/s, while `max_velocity` is 200. Klipper caps every move at
+> `max_velocity`, and the time estimate does the same through `machine_max_feedrate_x` / `_y`. If
+> your printer allows higher speeds, raise `max_velocity` in Klipper and these feedrates together.
+>
+> Even with matching limits, PrusaSlicer models Klipper's motion only approximately. For exact times, see
+> the klipper_estimator section in the [README](../README.md#accurate-print-times-with-klipper_estimator).
 
 ### Custom g-code
 
