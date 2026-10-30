@@ -1,0 +1,6 @@
+kind: tool_print
+id: common Micron
+variants:
+- condition: printer.model == "MICRON180"
+  name: no tool MICRON180
+  id: RPAL1gPKQUaFWZ1JUdkNow

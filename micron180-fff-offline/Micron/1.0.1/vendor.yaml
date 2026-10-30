@@ -1,0 +1,141 @@
+kind: vendor
+id: Micron
+name: 'Micron'
+version: 1.0.1
+features:
+  printer:
+    supports_high_flow_nozzle:
+      default: false
+      user_editable: false
+    input_shaper:
+      default: false
+      user_editable: false
+    planetary_gearbox:
+      default: false
+      user_editable: false
+    supports_tool_preheating:
+      default: false
+    multi_extruder:
+      default: false
+    bed_segments_x:
+      default: 1
+    bed_segments_y:
+      default: 1
+    auxiliary_travel_anchor_x:
+      default: -1
+    auxiliary_travel_anchor_y:
+      default: -1
+    supports_025_nozzle:
+      default: false
+    supports_03_nozzle:
+      default: false
+    supports_04_nozzle:
+      default: false
+    supports_05_nozzle:
+      default: false
+    supports_06_nozzle:
+      default: false
+    supports_08_nozzle:
+      default: false
+    supports_mmu_025_nozzle:
+      default: false
+    supports_mmu_03_nozzle:
+      default: false
+    supports_mmu_04_nozzle:
+      default: false
+    supports_mmu_05_nozzle:
+      default: false
+    supports_mmu_06_nozzle:
+      default: false
+    supports_mmu_08_nozzle:
+      default: false
+  tool:
+    nozzle_high_flow:
+      default: false
+      user_editable: false
+    nozzle_diameter:
+      default: 0.4
+      user_editable: false
+  sheet:
+    cold:
+      default: false
+      user_editable: false
+  feeder:
+    single_mode:
+      default: false
+---
+kind: sheet
+id: pei_smooth
+name: PEI Smooth
+type: pei_smooth
+---
+kind: tool
+technology: FFF
+id: 'micron-0.4'
+name: '0.4'
+condition: printer.model == "MICRON180"
+features:
+  nozzle_diameter:
+    default: 0.4
+---
+kind: printer
+technology: FFF
+name: 'Micron 180'
+id: micron180
+model:
+  base_model: MICRON180
+  model: MICRON180
+tool_count: 1
+features:
+  supports_high_flow_nozzle:
+    default: false
+  input_shaper:
+    default: false
+  planetary_gearbox:
+    default: false
+  supports_tool_preheating:
+    default: false
+  multi_extruder:
+    default: false
+  bed_segments_x:
+    default: 1
+  bed_segments_y:
+    default: 1
+  supports_025_nozzle:
+    default: false
+  supports_03_nozzle:
+    default: false
+  supports_04_nozzle:
+    default: false
+  supports_05_nozzle:
+    default: false
+  supports_06_nozzle:
+    default: false
+  supports_08_nozzle:
+    default: false
+  supports_mmu_025_nozzle:
+    default: false
+  supports_mmu_03_nozzle:
+    default: false
+  supports_mmu_04_nozzle:
+    default: false
+  supports_mmu_05_nozzle:
+    default: false
+  supports_mmu_06_nozzle:
+    default: false
+  supports_mmu_08_nozzle:
+    default: false
+visual:
+  bed_model: micron-bed.stl
+  bed_texture: micron-bed-texture.png
+  thumbnail: micron-thumbnail.png
+---
+kind: printer_config
+id: micron180-cfg
+name: 'Micron 180'
+printer: micron180
+legacy_printer_model: [MICRON180]
+tool_count: 1
+tools:
+- tool: 'micron-0.4'
+sheet: pei_smooth
