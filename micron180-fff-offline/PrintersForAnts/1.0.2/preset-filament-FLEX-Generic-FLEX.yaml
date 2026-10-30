@@ -4,7 +4,7 @@ id: 'Generic FLEX @Micron 180'
 name: 'Generic FLEX @Micron 180'
 features:
   $.type: 'FLEX'
-condition: printer.model == "MICRON180" and (tool.nozzle_diameter == 0.4)
+condition: printer.model == "MICRON180" and (tool.nozzle_diameter == 0.4 or tool.nozzle_diameter == 0.6)
 values:
   bed_temperature: 50
   bridge_fan_speed: 80
@@ -45,4 +45,7 @@ values:
 variants:
 - condition: tool.nozzle_diameter == 0.4
   id: ymzdnhFLzdWq3aanr5/2HA
+  values: {}
+- condition: tool.nozzle_diameter == 0.6
+  id: VH8+/DG2UYPUKt2Dopuy1Q
   values: {}

@@ -7,6 +7,11 @@ variants:
   id: TVF3+BGQQWiQswm2an5EFA
   values:
     default_print: '0.20mm STRUCTURAL @Micron 180 0.4'
+# 0.6
+- condition: tool.nozzle_diameter == 0.6
+  id: xRoO2W0INLJgyBn5Wb4L+A
+  values:
+    default_print: '0.30mm STRUCTURAL @Micron 180 0.6'
 ---
 id: FuOydqdISz+lUe+Aq5SZsg
 kind: printer

@@ -4,7 +4,7 @@ id: 'Generic PLA @Micron 180'
 name: 'Generic PLA @Micron 180'
 features:
   $.type: 'PLA'
-condition: printer.model == "MICRON180" and (tool.nozzle_diameter == 0.4)
+condition: printer.model == "MICRON180" and (tool.nozzle_diameter == 0.4 or tool.nozzle_diameter == 0.6)
 values:
   bed_temperature: 60
   bridge_fan_speed: 100
@@ -43,3 +43,7 @@ variants:
   id: C4D+yIREoe9Fte7GxGruQw
   values:
     slowdown_below_layer_time: 15
+- condition: tool.nozzle_diameter == 0.6
+  id: NnTBYvmsC82hgWqzUM+4WA
+  values:
+    slowdown_below_layer_time: 18

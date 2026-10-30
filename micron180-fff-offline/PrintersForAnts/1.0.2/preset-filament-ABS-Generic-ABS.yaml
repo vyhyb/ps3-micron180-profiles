@@ -4,7 +4,7 @@ id: 'Generic ABS @Micron 180'
 name: 'Generic ABS @Micron 180'
 features:
   $.type: 'ABS'
-condition: printer.model == "MICRON180" and (tool.nozzle_diameter == 0.4)
+condition: printer.model == "MICRON180" and (tool.nozzle_diameter == 0.4 or tool.nozzle_diameter == 0.6)
 values:
   bed_temperature: 100
   bridge_fan_speed: 25
@@ -45,3 +45,8 @@ variants:
   values:
     filament_infill_max_crossing_speed: 0
     filament_max_volumetric_speed: 10
+- condition: tool.nozzle_diameter == 0.6
+  id: oX71wfiY4czqRkHB3AsIvg
+  values:
+    filament_infill_max_crossing_speed: 100
+    filament_max_volumetric_speed: 9

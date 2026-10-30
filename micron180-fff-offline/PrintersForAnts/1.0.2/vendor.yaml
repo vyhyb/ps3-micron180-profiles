@@ -83,6 +83,15 @@ features:
   nozzle_diameter:
     default: 0.4
 ---
+kind: tool
+technology: FFF
+id: 'micron-0.6'
+name: '0.6'
+condition: printer.model == "MICRON180" and printer.supports_06_nozzle
+features:
+  nozzle_diameter:
+    default: 0.6
+---
 kind: printer
 technology: FFF
 name: 'Micron 180'
@@ -94,6 +103,8 @@ tool_count: 1
 # Only features that differ from the vendor defaults above.
 features:
   supports_04_nozzle:
+    default: true
+  supports_06_nozzle:
     default: true
 visual:
   bed_model: micron-bed.stl
