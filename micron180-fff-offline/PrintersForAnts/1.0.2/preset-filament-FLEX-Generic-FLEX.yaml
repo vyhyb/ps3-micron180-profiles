@@ -1,7 +1,7 @@
 # Adapted from Prusa Research 'Generic FLEX' (MINI variants).
 kind: filament
-id: 'Generic FLEX @Micron 180'
-name: 'Generic FLEX @Micron 180'
+id: 'Generic FLEX Micron180'
+name: 'Generic FLEX'
 features:
   $.type: 'FLEX'
 condition: printer.model == "MICRON180" and (tool.nozzle_diameter == 0.4 or tool.nozzle_diameter == 0.6)
@@ -44,8 +44,10 @@ values:
   temperature: 240
 variants:
 - condition: tool.nozzle_diameter == 0.4
+  name: 'Generic FLEX @Micron 180'
   id: ymzdnhFLzdWq3aanr5/2HA
   values: {}
 - condition: tool.nozzle_diameter == 0.6
+  name: 'Generic FLEX @Micron 180'
   id: VH8+/DG2UYPUKt2Dopuy1Q
   values: {}

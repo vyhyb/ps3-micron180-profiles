@@ -54,7 +54,8 @@ EOF
 ```
 
 Quoted ids are left alone. These are abstract presets (`'*...*'`) and filament ids such as
-`'Generic PLA @MyPrinter'`, which step 3 already made unique.
+`'Generic PLA MyPrinter'`, which step 3 already made unique. Never put `@` into an id
+(see [Filament profiles](filaments.md)).
 
 ## 4. Change the machine and print values
 

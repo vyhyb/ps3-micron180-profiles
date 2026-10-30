@@ -1,7 +1,7 @@
 # Adapted from Prusa Research 'Generic ASA' (MINI variants).
 kind: filament
-id: 'Generic ASA @Micron 180'
-name: 'Generic ASA @Micron 180'
+id: 'Generic ASA Micron180'
+name: 'Generic ASA'
 features:
   $.type: 'ASA'
 condition: printer.model == "MICRON180" and (tool.nozzle_diameter == 0.4 or tool.nozzle_diameter == 0.6)
@@ -41,11 +41,13 @@ values:
   temperature: 260
 variants:
 - condition: tool.nozzle_diameter == 0.4
+  name: 'Generic ASA @Micron 180'
   id: KzB27PYQF2TDgBBdlvYnAA
   values:
     filament_infill_max_crossing_speed: 0
     filament_max_volumetric_speed: 10
 - condition: tool.nozzle_diameter == 0.6
+  name: 'Generic ASA @Micron 180'
   id: e05SKDBPusjumjzmyMSfxg
   values:
     filament_infill_max_crossing_speed: 100

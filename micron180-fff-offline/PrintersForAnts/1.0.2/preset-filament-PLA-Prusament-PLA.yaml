@@ -1,7 +1,7 @@
 # Adapted from Prusa Research 'Prusament PLA' (MINI variants).
 kind: filament
-id: 'Prusament PLA @Micron 180'
-name: 'Prusament PLA @Micron 180'
+id: 'Prusament PLA Micron180'
+name: 'Prusament PLA'
 features:
   $.type: 'PLA'
 condition: printer.model == "MICRON180" and (tool.nozzle_diameter == 0.4 or tool.nozzle_diameter == 0.6)
@@ -40,10 +40,12 @@ values:
   temperature: 225
 variants:
 - condition: tool.nozzle_diameter == 0.4
+  name: 'Prusament PLA @Micron 180'
   id: POU+OaHTHFMlzt/IWe4pHA
   values:
     slowdown_below_layer_time: 15
 - condition: tool.nozzle_diameter == 0.6
+  name: 'Prusament PLA @Micron 180'
   id: c5oDstirr4rm5tVMA7jvzg
   values:
     slowdown_below_layer_time: 18

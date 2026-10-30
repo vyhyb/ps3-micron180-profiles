@@ -2,6 +2,7 @@
 """Sanity checks for the profile repository before it is released.
 
 - every vendor version folder has a manifest.json whose hashes match the files
+- no preset id contains "@"
 - vendor.yaml `version:` matches its folder name
 - vendor_indices.zip contains <Vendor>.idx whose newest entry is the newest folder
 
@@ -40,6 +41,11 @@ for vendor in sorted(d for d in os.listdir(repo) if os.path.isdir(os.path.join(r
             h = hashlib.sha256(open(os.path.join(vdir, f), "rb").read()).hexdigest()
             if h != manifest[f]:
                 errors.append(f"{vendor}/{version}: hash mismatch for {f} (regenerate manifest.json)")
+        # "@" in an id breaks custom presets derived from it (PrusaSlicer 3.0.0-alpha12 crashes on start).
+        for f in sorted(x for x in files if x.endswith(".yaml")):
+            for n, line in enumerate(open(os.path.join(vdir, f), encoding="utf-8"), 1):
+                if re.match(r"^\s*-?\s*id:.*@", line):
+                    errors.append(f"{vendor}/{version}/{f}:{n}: '@' in id: {line.strip()}")
         m = re.search(r"^version:\s*(\S+)", open(os.path.join(vdir, "vendor.yaml")).read(), re.M)
         if not m or m.group(1) != version:
             errors.append(f"{vendor}/{version}: vendor.yaml version is {m and m.group(1)}, expected {version}")

@@ -1,7 +1,7 @@
 # Adapted from Prusa Research 'Prusament PETG' (MINI variants).
 kind: filament
-id: 'Prusament PETG @Micron 180'
-name: 'Prusament PETG @Micron 180'
+id: 'Prusament PETG Micron180'
+name: 'Prusament PETG'
 features:
   $.type: 'PETG'
 condition: printer.model == "MICRON180" and (tool.nozzle_diameter == 0.4 or tool.nozzle_diameter == 0.6)
@@ -39,11 +39,13 @@ values:
   temperature: 250
 variants:
 - condition: tool.nozzle_diameter == 0.4
+  name: 'Prusament PETG @Micron 180'
   id: ZgcDBxYXVt3ywGmKO5mhcg
   values:
     filament_max_volumetric_speed: 9
     slowdown_below_layer_time: 10
 - condition: tool.nozzle_diameter == 0.6
+  name: 'Prusament PETG @Micron 180'
   id: m0J5O3Yoi9ttiwdSxTswpA
   values:
     filament_max_volumetric_speed: 15

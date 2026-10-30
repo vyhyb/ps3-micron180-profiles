@@ -1,7 +1,7 @@
 # Adapted from Prusa Research 'Generic PETG' (MINI variants).
 kind: filament
-id: 'Generic PETG @Micron 180'
-name: 'Generic PETG @Micron 180'
+id: 'Generic PETG Micron180'
+name: 'Generic PETG'
 features:
   $.type: 'PETG'
 condition: printer.model == "MICRON180" and (tool.nozzle_diameter == 0.4 or tool.nozzle_diameter == 0.6)
@@ -39,11 +39,13 @@ values:
   temperature: 245
 variants:
 - condition: tool.nozzle_diameter == 0.4
+  name: 'Generic PETG @Micron 180'
   id: K5DwFacSDKArrLWTW+Kopg
   values:
     filament_max_volumetric_speed: 9
     slowdown_below_layer_time: 10
 - condition: tool.nozzle_diameter == 0.6
+  name: 'Generic PETG @Micron 180'
   id: d7nwFA7MK40n7aykbovExg
   values:
     filament_max_volumetric_speed: 15

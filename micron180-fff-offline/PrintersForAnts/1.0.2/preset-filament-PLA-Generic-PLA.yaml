@@ -1,7 +1,7 @@
 # Adapted from Prusa Research 'Generic PLA' (MINI variants).
 kind: filament
-id: 'Generic PLA @Micron 180'
-name: 'Generic PLA @Micron 180'
+id: 'Generic PLA Micron180'
+name: 'Generic PLA'
 features:
   $.type: 'PLA'
 condition: printer.model == "MICRON180" and (tool.nozzle_diameter == 0.4 or tool.nozzle_diameter == 0.6)
@@ -40,10 +40,12 @@ values:
   temperature: 225
 variants:
 - condition: tool.nozzle_diameter == 0.4
+  name: 'Generic PLA @Micron 180'
   id: C4D+yIREoe9Fte7GxGruQw
   values:
     slowdown_below_layer_time: 15
 - condition: tool.nozzle_diameter == 0.6
+  name: 'Generic PLA @Micron 180'
   id: NnTBYvmsC82hgWqzUM+4WA
   values:
     slowdown_below_layer_time: 18

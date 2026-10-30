@@ -94,7 +94,9 @@ Conditions are evaluated against the selected hardware:
 | Operators | `==`, `!=`, `=~ /regex/`, `!~`, `and`, `or`, `!` |
 
 `id` values are arbitrary unique strings. Prusa uses 22-character base64 strings. Keep an id stable once
-it has been published, because user presets and projects refer to it.
+it has been published, because user presets and projects refer to it. **Never use `@` in an id.**
+PrusaSlicer uses `@` as a separator in preset identities. With `@` in a filament id, saving a custom
+filament produces a preset that crashes PrusaSlicer 3.0.0-alpha12 on the next start.
 
 ## Where settings live
 

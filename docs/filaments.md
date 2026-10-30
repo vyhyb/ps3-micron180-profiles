@@ -18,13 +18,13 @@ Files: `PrintersForAnts/1.0.2/preset-filament-<TYPE>-<Vendor>-<Name>.yaml`, one 
 Max flow is `filament_max_volumetric_speed` in mm³/s. It is the most important limit in the profile,
 because it caps every print speed.
 
-Every filament is available for both nozzles. The file has the same name for both. The nozzle-specific
-values sit in two variants:
+Every filament is available for both nozzles under the same name. The nozzle-specific values sit in
+two named variants:
 
 ```yaml
 kind: filament
-id: 'Generic PETG @Micron 180'
-name: 'Generic PETG @Micron 180'
+id: 'Generic PETG Micron180'            # no "@" in ids, see below
+name: 'Generic PETG'
 features:
   $.type: 'PETG'
 condition: printer.model == "MICRON180" and (tool.nozzle_diameter == 0.4 or tool.nozzle_diameter == 0.6)
@@ -33,16 +33,27 @@ values:
   ...                                   # everything that is the same for both nozzles
 variants:
 - condition: tool.nozzle_diameter == 0.4
+  name: 'Generic PETG @Micron 180'      # the name shown in PrusaSlicer
   id: ...
   values:
     filament_max_volumetric_speed: 9
     slowdown_below_layer_time: 10
 - condition: tool.nozzle_diameter == 0.6
+  name: 'Generic PETG @Micron 180'
   id: ...
   values:
     filament_max_volumetric_speed: 15
     slowdown_below_layer_time: 17
 ```
+
+Two rules keep custom filaments working. Breaking either makes PrusaSlicer 3.0.0-alpha12 crash on start
+once a user saves a custom filament based on the profile:
+
+- **No `@` in any `id`.** PrusaSlicer treats `@` in an id as a separator and builds the variant
+  identity as `<variant id>@<suffix>`. A custom preset saved from it then points to a parent that
+  cannot be found.
+- **Give every nozzle variant a `name`.** Custom presets inherit from the named variant the user
+  selected, as in Prusa's own files (for example `Prusament PLA @MINI 0.4`).
 
 ## Where the values come from
 
@@ -72,9 +83,9 @@ keep the nozzle at or below 240 °C, which rules out ABS and ASA.
 
 ## Adding another filament
 
-Copy the closest existing file and change `id`, `name`, `features.$.type` and the values. Keep the
-`@Micron 180` suffix so the name does not clash with other vendors' filaments. Give each variant a new
-unique `id`. Then update the version `manifest.json` (see [Adapting](adapting.md#5-update-hashes-and-version)).
+Copy the closest existing file and change `id` (no `@`), the top-level `name`, the variant `name`s,
+`features.$.type` and the values. Keep the `@Micron 180` suffix in the variant names so they don't
+clash with other vendors' filaments. Give each variant a new unique `id`. Then update the version `manifest.json` (see [Adapting](adapting.md#5-update-hashes-and-version)).
 
 ## Full value reference (shared values)
 

@@ -1,7 +1,7 @@
 # Adapted from Prusa Research 'Prusament ASA' (MINI variants).
 kind: filament
-id: 'Prusament ASA @Micron 180'
-name: 'Prusament ASA @Micron 180'
+id: 'Prusament ASA Micron180'
+name: 'Prusament ASA'
 features:
   $.type: 'ASA'
 condition: printer.model == "MICRON180" and (tool.nozzle_diameter == 0.4 or tool.nozzle_diameter == 0.6)
@@ -41,11 +41,13 @@ values:
   temperature: 260
 variants:
 - condition: tool.nozzle_diameter == 0.4
+  name: 'Prusament ASA @Micron 180'
   id: uPxnc+basFBjajacELIagA
   values:
     filament_infill_max_crossing_speed: 0
     filament_max_volumetric_speed: 10
 - condition: tool.nozzle_diameter == 0.6
+  name: 'Prusament ASA @Micron 180'
   id: 2nyzhniIP8iGe2e8/7svMQ
   values:
     filament_infill_max_crossing_speed: 100

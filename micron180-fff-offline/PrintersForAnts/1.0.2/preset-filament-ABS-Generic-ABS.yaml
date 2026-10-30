@@ -1,7 +1,7 @@
 # Adapted from Prusa Research 'Generic ABS' (MINI variants).
 kind: filament
-id: 'Generic ABS @Micron 180'
-name: 'Generic ABS @Micron 180'
+id: 'Generic ABS Micron180'
+name: 'Generic ABS'
 features:
   $.type: 'ABS'
 condition: printer.model == "MICRON180" and (tool.nozzle_diameter == 0.4 or tool.nozzle_diameter == 0.6)
@@ -41,11 +41,13 @@ values:
   temperature: 260
 variants:
 - condition: tool.nozzle_diameter == 0.4
+  name: 'Generic ABS @Micron 180'
   id: l92cH3+597LZ3MzcoRAEmw
   values:
     filament_infill_max_crossing_speed: 0
     filament_max_volumetric_speed: 10
 - condition: tool.nozzle_diameter == 0.6
+  name: 'Generic ABS @Micron 180'
   id: oX71wfiY4czqRkHB3AsIvg
   values:
     filament_infill_max_crossing_speed: 100
