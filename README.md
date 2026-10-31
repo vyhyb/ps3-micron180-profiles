@@ -21,7 +21,7 @@ Verified to load in PrusaSlicer 3.0.0-alpha12. The 0.4 values come from a tuned,
 micron180-fff-offline/               # the repository (zip its contents to install)
 ├── manifest.json
 ├── vendor_indices.zip               # PrintersForAnts.idx (version history)
-└── PrintersForAnts/1.0.2/
+└── PrintersForAnts/1.0.3/
     ├── vendor.yaml                  # vendor, printer, nozzles, sheet, printer config
     ├── manifest.json                # SHA-256 of every file in this folder
     ├── preset-printer-micron.yaml
@@ -74,7 +74,7 @@ After changing any file under `PrintersForAnts/<version>/`, regenerate that fold
 
 ## Releasing
 
-Pushing a tag that starts with `v` (for example `v1.0.2`) runs [the release workflow](.github/workflows/release.yml):
+Pushing a tag that starts with `v` (for example `v1.0.3`) runs [the release workflow](.github/workflows/release.yml):
 
 1. It checks that every `manifest.json` hash matches its file, that `vendor.yaml` versions match their
    folders, and that the newest `.idx` entry is the newest version. It warns if the tag differs from
@@ -85,8 +85,8 @@ Pushing a tag that starts with `v` (for example `v1.0.2`) runs [the release work
    `fix`, `docs`). Tags containing `-`, such as `v1.1.0-beta1`, become pre-releases.
 
 ```sh
-git tag v1.0.2
-git push origin main v1.0.2
+git tag v1.0.3
+git push origin main v1.0.3
 ```
 
 Use commit messages like `feat: add 0.25 nozzle` or `fix: lower PETG flow` so they land in the

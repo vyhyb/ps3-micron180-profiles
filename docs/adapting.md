@@ -12,7 +12,7 @@ conditions work.
 cp -r micron180-fff-offline myprinter-fff-offline
 cd myprinter-fff-offline
 mv PrintersForAnts MyVendor
-mv MyVendor/1.0.2 MyVendor/1.0.0        # start your own version history
+mv MyVendor/1.0.3 MyVendor/1.0.0        # start your own version history
 ```
 
 ## 2. Edit vendor.yaml

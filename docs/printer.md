@@ -1,6 +1,6 @@
 # Printer profile: Micron 180
 
-File: `PrintersForAnts/1.0.2/preset-printer-micron.yaml`, plus the `printer`, `tool` and `printer_config`
+File: `PrintersForAnts/1.0.3/preset-printer-micron.yaml`, plus the `printer`, `tool` and `printer_config`
 entries in `vendor.yaml`.
 
 The Micron 180 is a small CoreXY printer by PrintersForAnts. It runs Klipper. This profile is for a

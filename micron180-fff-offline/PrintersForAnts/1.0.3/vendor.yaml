@@ -1,7 +1,7 @@
 kind: vendor
 id: PrintersForAnts
 name: PrintersForAnts
-version: 1.0.2
+version: 1.0.3
 features:
   printer:
     supports_high_flow_nozzle:

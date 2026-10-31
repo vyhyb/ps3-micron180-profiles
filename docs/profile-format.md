@@ -11,7 +11,7 @@ micron180-fff-offline/              # repository root (zip this folder's content
 ├── manifest.json                   # repository manifest: id, name, URLs
 ├── vendor_indices.zip              # contains <Vendor>.idx: version history + min slicer version
 └── PrintersForAnts/                # one folder per vendor id
-    └── 1.0.2/                      # one folder per vendor version
+    └── 1.0.3/                      # one folder per vendor version
         ├── manifest.json           # every file in this folder with its SHA-256 hash
         ├── vendor.yaml             # vendor, printers, tools (nozzles), sheets, printer configs
         ├── preset-printer-*.yaml   # machine settings

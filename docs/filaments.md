@@ -1,6 +1,6 @@
 # Filament profiles
 
-Files: `PrintersForAnts/1.0.2/preset-filament-<TYPE>-<Vendor>-<Name>.yaml`, one file per filament.
+Files: `PrintersForAnts/1.0.3/preset-filament-<TYPE>-<Vendor>-<Name>.yaml`, one file per filament.
 
 ## Available filaments
 
